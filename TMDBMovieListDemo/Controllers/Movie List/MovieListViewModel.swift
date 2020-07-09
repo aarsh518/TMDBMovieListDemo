@@ -11,13 +11,15 @@ import UIKit
 class MovieListViewModel {
     
     var movieListArray: [MovieResult]
-    var pageNumber: Int
-    var totalPageCount: Int = 0
+    var currentPage: Int
+    var totalPageCount: Int
+    var parentControllerReference: MovieListVC
     
-    init() {
-        pageNumber = 0
+    init(withParentReference parentController: MovieListVC) {
+        currentPage = 0
+        totalPageCount = 1
         movieListArray = [MovieResult]()
-        getMovieList(withPageNumber: String(pageNumber + 1))
+        parentControllerReference = parentController
     }
     
     deinit {
@@ -25,13 +27,17 @@ class MovieListViewModel {
     
     func getMovieList(withPageNumber page: String) {
         MovieListHandler.fetchMovieList(withPageNumber: page, success: { [weak self] movieList in
+            DispatchQueue.main.async {
+                guard let self = self else { return }
+                self.currentPage = movieList.page
+                self.totalPageCount = movieList.totalPages
+                self.movieListArray.removeAll()
+                self.movieListArray = movieList.results
+                self.parentControllerReference.refreshTableView()
+            }
+        }) { [weak self] errorString in
             guard let self = self else { return }
-            self.pageNumber = movieList.page
-            self.totalPageCount = movieList.totalPages
-            self.movieListArray.removeAll()
-            self.movieListArray = movieList.results
-        }) { errorString in
-            
+            Alert.showNormalAlert(withTitle: nil, message: errorString ?? "Something went wrong. Please try again!", onController: self.parentControllerReference)
         }
     }
 }

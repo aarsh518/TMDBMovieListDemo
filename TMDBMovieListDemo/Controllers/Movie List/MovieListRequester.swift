@@ -26,7 +26,7 @@ class MovieListRequester: NetworkRequestable {
     
     var parameters: [String : Any]? {
         return [
-            "api_key" : "2cf28df74f7463ce7ef6ffd4dca51713",
+            "api_key" : "8eac22f4c24d01c480e4d99fef2edfc3",
             "page":self.pageNumber]
     }
     

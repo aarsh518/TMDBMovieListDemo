@@ -10,11 +10,9 @@ import UIKit
 
 class NetworkRouter {
     
-    static let movieBaseURL = "https://api.themoviedb.org/"
-    static let imageBaseURL = ""
+    static let movieBaseURL = "https://api.themoviedb.org/3"
+    static let imageBaseURL = "https://image.tmdb.org/t/p/original/"
     enum APIEndPoints: String {
-        case movieList = "3/movie/popular"
+        case movieList = "/trending/movie/week"
     }
-    
-    
 }
