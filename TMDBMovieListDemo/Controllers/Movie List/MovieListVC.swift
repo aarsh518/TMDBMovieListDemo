@@ -9,7 +9,6 @@
 import UIKit
 
 class MovieListVC: UIViewController {
-
     
     lazy var moviewListTableView: UITableView = {
         let tblView = UITableView(frame: CGRect.zero, style: .plain)
@@ -73,6 +72,14 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
         viewModel.movieListArray.count
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if !viewModel.movieListArray.isEmpty, indexPath.row == viewModel.movieListArray.count - 2 {
+            DispatchQueue.global().async { [weak self] in
+                self?.fetchMoviewData()
+            }
+        }
+    }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         return makeMoviewListCell(withIndexPath: indexPath)
     }
@@ -83,15 +90,5 @@ extension MovieListVC: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
-    }
-}
-
-extension MovieListVC: UIScrollViewDelegate {
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        let currentOffset = scrollView.contentOffset.y
-        let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        if maximumOffset - currentOffset <= 10.0 {
-            self.fetchMoviewData()
-        }
     }
 }

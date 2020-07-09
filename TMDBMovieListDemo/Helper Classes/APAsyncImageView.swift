@@ -37,7 +37,7 @@ class APAsyncImageView: UIImageView {
         DispatchQueue.global().async { [weak self] in
             guard let weakSelf = self, let imageURL = URL(string: imgURL) else {return}
             URLSession.shared.dataTask(with: imageURL, completionHandler: { (data, response, error) in
-                DispatchQueue.main.async {
+                DispatchQueue.main.asyncAfter(deadline: .now()+0.4) {
                     if error == nil, let imageData = data, let image = UIImage(data: imageData) {
                         if weakSelf.imageURL == imgURL {
                             weakSelf.image = image

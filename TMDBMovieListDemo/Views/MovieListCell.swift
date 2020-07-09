@@ -32,7 +32,13 @@ class MovieListCell: UITableViewCell {
             let backDropEndPoint = data.backdropPath ?? ""
             let posterBaseURL = NetworkRouter.imageBaseURL
             moviePosterImageView.loadImage(withImageURL: posterBaseURL + posterEndPoint)
-            movieBackDropImageView.loadImage(withImageURL: posterBaseURL + backDropEndPoint, UIImage(systemName: "photo.on.rectangle") ?? UIImage())
+            var placeHolderImage: UIImage
+            if #available(iOS 13.0, *) {
+               placeHolderImage = UIImage(systemName: "photo.on.rectangle") ?? UIImage()
+            } else {
+                placeHolderImage = UIImage()
+            }
+            movieBackDropImageView.loadImage(withImageURL: posterBaseURL + backDropEndPoint, placeHolderImage)
         }
     }
     

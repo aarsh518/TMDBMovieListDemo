@@ -31,8 +31,7 @@ class MovieListViewModel {
                 guard let self = self else { return }
                 self.currentPage = movieList.page
                 self.totalPageCount = movieList.totalPages
-                self.movieListArray.removeAll()
-                self.movieListArray = movieList.results
+                self.movieListArray += movieList.results
                 self.parentControllerReference.refreshTableView()
             }
         }) { [weak self] errorString in

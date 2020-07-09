@@ -90,6 +90,8 @@
 		3D5716C824B63707003FECEC /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				3D5716D324B64C25003FECEC /* MovieListHandler.swift */,
+				3D5716D524B64C76003FECEC /* MovieListRequester.swift */,
 				3D5716CA24B63D95003FECEC /* NetworkManager.swift */,
 				3D5716CC24B642FD003FECEC /* NetworkRouter.swift */,
 				3D5716D724B64CDD003FECEC /* NetworkRequestable.swift */,
@@ -110,11 +112,16 @@
 			isa = PBXGroup;
 			children = (
 				3D5716D124B64C10003FECEC /* MovieListVC.swift */,
-				3D5716D324B64C25003FECEC /* MovieListHandler.swift */,
-				3D5716D524B64C76003FECEC /* MovieListRequester.swift */,
-				3D5716DB24B659D0003FECEC /* MovieListViewModel.swift */,
 			);
 			path = "Movie List";
+			sourceTree = "<group>";
+		};
+		3D5716E924B72EB5003FECEC /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				3D5716DB24B659D0003FECEC /* MovieListViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 		3DBE8C3624B2615F00673C63 = {
@@ -136,6 +143,7 @@
 		3DBE8C4124B2615F00673C63 /* TMDBMovieListDemo */ = {
 			isa = PBXGroup;
 			children = (
+				3D5716E924B72EB5003FECEC /* ViewModels */,
 				3D5716C924B63710003FECEC /* Helper Classes */,
 				3D5716C824B63707003FECEC /* Networking */,
 				3D5716C724B636B1003FECEC /* Models */,
@@ -308,7 +316,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -362,7 +370,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
